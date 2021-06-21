@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- CSS Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- Javascript Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- Icon Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Javascript / Servidor -->
+    <script src="app.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+    <!-- Titulo: Inventario 2021 -->
+    <div class="container-fluid mt-3 mb-3">
+        <nav class="navbar navbar-dark bg-primary">
+            <a class="navbar-brand mx-auto"><strong>INVENTARIO 2021</strong>  </a>
+          </nav>
+
+        <input type="text" id="formulario" class="form-control my-2" placeholder="Ingrese un valor">
+        <button class="btn btn-primary mt-2" id="boton">Filtrar <i class="bi bi-clipboard-data"></i></button>
+
+        <caption>
+            <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#modalNuevo">Agregar Nuevo <i class="bi bi-clipboard-plus"></i></button>
+        </caption>
+
+    </div class="table-responsive">
+
+    <table class="table table-striped table-hover">
+        <thead class="table-light table-success">
+            <tr class="table-primary align-middle">
+                <!--<th>#</th> -->
+                <th>Codigo Patrimonial</th>
+                <th>Equipo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Serie</th>
+                <th>Ubicacion</th>
+                <th>Acciones</th> <!-- area para Btn Editar y Eliminar -->
+            </tr>
+        </thead>
+
+        <!-- dentro de "tbody" se incrustara los valores de la tabla -->
+        <tbody id="resultado" class="align-middle">
+
+        </tbody>
+
+        <tfoot>
+            <tr class="table-primary">
+                <!--<th>#</th> -->
+                <th>Codigo Patrimonial</th>
+                <th>Equipo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Serie</th>
+                <th>Ubicacion</th>
+                <th>Acciones</th>  <!-- area para Btn Editar y Eliminar -->
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+  <!-- Modal para Registros Nuevos -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalNuevo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Dato</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <label> <strong>Codigo Patrimonial</strong> </label>
+                      <input type="text" name="" id="cpn" class="form-control input-sm">
+                      <label> <strong>Equipo</strong> </label>
+                      <input type="text" name="" id="equipon" class="form-control input-sm">
+                      <label><strong>Marca</strong></label>
+                      <input type="text" name="" id="marcan" class="form-control input-sm">
+                      <label><strong>Modelo</strong></label>
+                      <input type="text" name="" id="modelon" class="form-control input-sm">
+                      <label><strong>Serie</strong></label>
+                      <input type="text" name="" id="serien" class="form-control input-sm">
+                      <label><strong>Ubicacion</strong></label>
+                      <input type="text" name="" id="ubicacionn" class="form-control input-sm">
+                  </div>
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="guardarNuevo">Agregar</button>
+
+                  </div>
+              </div>
+              </div>
+          </div>
+
+
+
+
+
+
+  <!-- Modal para Edicion de Datos -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalEdicion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Actualizar Datos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input  type="hidden" id="idpersona" name="">
+
+          <label> <strong>Codigo Patrimonial</strong> </label>
+          <input type="text" name="" id="cpu" value="" class="form-control input-sm">
+          <label> <strong>Equipo</strong> </label>
+          <input type="text" name="" id="equipou" class="form-control input-sm">
+          <label><strong>Marca</strong></label>
+          <input type="text" name="" id="marcau" class="form-control input-sm">
+          <label><strong>Modelo</strong></label>
+          <input type="text" name="" id="modelou" class="form-control input-sm">
+          <label><strong>Serie</strong></label>
+          <input type="text" name="" id="serieu" class="form-control input-sm">
+          <label><strong>Ubicacion</strong></label>
+          <input type="text" name="" id="ubicacionu" class="form-control input-sm">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal" id="actualizaDatos">Actualizar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Javascript / Frontend -->
+    <script src="datatable.js"></script>
+    <!--
+    <script src="agregar.js"></script>
+-->
+</body>
+</html>

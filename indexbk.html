@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- DataTable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!-- Javascript -->
+<script src="app.js"></script>
+
+
+</head>
+<body>
+    <!-- Titulo: Inventario 2021 -->
+
+    <div class="container-fluid mt-3 mb-3">
+
+        <nav class="navbar navbar-dark bg-primary">
+            <a class="navbar-brand mx-auto"><strong>INVENTARIO 2021</strong>  </a>
+          </nav>
+
+        <button class="btn btn-info mt-2" id="boton">GET</button>
+
+    </div>
+
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <!--<th>#</th> -->
+                <th>Codigo Patrimonial</th>
+                <th>Equipo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Serie</th>
+                <th>Ubicacion</th>
+            </tr>
+        </thead>
+
+        <!-- dentro de "tbody" se incrustara los valores de la tabla -->
+        <tbody id="resultado">
+
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <!--<th>#</th> -->
+                <th>Codigo Patrimonial</th>
+                <th>Equipo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Serie</th>
+                <th>Ubicacion</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <script>
+
+        let dataJson;
+        //let contFetch = 0;
+        const resultado = document.querySelector('#resultado');
+
+        const btnGet = () => {
+            fetch('http://localhost:3000/api/articulos2')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    dataJson = data;
+
+                    resultado.innerHTML = ``;
+
+                    iniTable();
+
+            for (const producto of data) {
+
+            //console.log(producto);
+                resultado.innerHTML += `
+                    <tr>
+                        <td>${producto.cp}</td>
+                        <td>${producto.equipo}</td>
+                        <td>${producto.marca}</td>
+                        <td>${producto.modelo}</td>
+                        <td>${producto.serie}</td>
+                        <td>${producto.ubicacion}</td>
+                    </tr>
+                        `
+            }
+            });
+        }
+        //console.log(data);
+        //iniTable();
+
+        boton.addEventListener('click', btnGet);
+        btnGet();
+
+
+        const iniTable = () => {
+            $(document).ready(function() {
+                $('#example').DataTable( {
+                    //paging: false,
+                    //searching: false,
+                    "sDom": '<"wrapper"lfptip>', //mostrar el Control de Paginacion en el Top y Bottom
+                    "retrieve": true, //con esta linea, se evita el cuadro de error por REinicializar el DataTable
+                "data": dataJson,
+
+                "columns": [
+                { "data": "cp" },
+                { "data": "equipo" },
+                { "data": "marca" },
+                { "data": "modelo" },
+                { "data": "serie" },
+                { "data": "ubicacion" }
+                ]
+            });
+            } );}
+
+    </script>
+
+
+
+
+</body>
+</html>

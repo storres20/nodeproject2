@@ -1,0 +1,12 @@
+12 jun 2021 - 10:56pm
+---------------------
+
+* se ha trabajado la carpeta "nodeproject2"
+* se tiene en la web una tabla dinamica enlazada a "mysql"
+* tiene un "input text" y un boton para filtrar el texto ingresado
+* entre sus archivos se hace el llamado a la base de datos con el Fetch GET
+
+
+
+
+
