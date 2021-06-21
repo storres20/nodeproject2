@@ -5,7 +5,11 @@
 <li>Bootstrap 5</li>
 <li>Botones New, Edit, Delete</li>
 <br>
-Esta pendiente que desde el MODAL se termine de concluir la accion de los botones
+Esta pendiente que desde el MODAL se termine de concluir la accion de los botones<br><br>
+La base de datos se llama: articulosdb<br>
+La tabla usada es: articulos2<br>
+Se ha extraido la tabla en formato sql --> articulos2.sql, contiene mas de 3000 items<br>
+Se ha agregado articulos.sql, el cual contiene un poco mas de 15 items<br>
 
 <h3>Boton New</h3>
 <li>Al presionar el boton Agregar Nuevo se activa una ventana Modal</li>
